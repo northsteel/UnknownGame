@@ -48,6 +48,9 @@ namespace UnknownGame
         // Random support
         private Random rnd = new Random();
 
+        // Animation
+        private Animation flamemanAnimation;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -100,6 +103,8 @@ namespace UnknownGame
             enemyBatDrawRect = new Rectangle(WindowWidth / 2, 30, batSprite.Width, batSprite.Height);
 
             debug = new Sprite(Content.Load<Texture2D>("Graphics/debug"), new Vector2(WindowWidth / 2, WindowHeight / 2), Sprite.Pivot.Center);
+
+            flamemanAnimation = new Animation(Content.Load<Texture2D>("Graphics/FlameMan"), new Point(44, 47), new Point(352, 47), new TimeSpan(0, 0, 1));
         }
 
         /// <summary>
@@ -236,6 +241,8 @@ namespace UnknownGame
 
             UpdateEnemy();
 
+            flamemanAnimation.Update(gameTime);
+
             base.Update(gameTime);
         }
 
@@ -260,6 +267,9 @@ namespace UnknownGame
 
             // Draw enemy bat
             spriteBatch.Draw(batSprite, enemyBatDrawRect, Color.White);
+
+            // Animation
+            flamemanAnimation.Draw(spriteBatch, new Vector2(200, 200), SpriteEffects.None);
 
             spriteBatch.End();
 
