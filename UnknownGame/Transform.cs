@@ -16,7 +16,7 @@ namespace UnknownGame
 
         #region Methods
 
-        public void Translate()
+        public void Translate(int X, int Y)
         {
 
         }
